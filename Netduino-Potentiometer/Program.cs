@@ -15,8 +15,8 @@ namespace Netduino_Potentiometer
         {
             AnalogInput pot = new AnalogInput(Cpu.AnalogChannel.ANALOG_0);
             OutputPort led = new OutputPort(Pins.GPIO_PIN_D0, false);
-            pot.Offset = 100;
-            pot.Scale = 500;
+            pot.Offset = 0;
+            pot.Scale = 100000;
 
             double potValue = 0.0;
             int sleepValue = 0;
@@ -25,6 +25,7 @@ namespace Netduino_Potentiometer
             {
                 potValue = pot.Read();
                 sleepValue = (int)(potValue);
+                Debug.Print(potValue + " " + sleepValue);
                 led.Write(true);
                 Thread.Sleep(sleepValue);
                 led.Write(false);
